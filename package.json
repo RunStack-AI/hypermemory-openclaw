@@ -1,0 +1,40 @@
+{
+  "name": "@hypermemory/openclaw-skill",
+  "version": "1.0.0",
+  "description": "HyperMemory persistent hypergraph memory skill for OpenClaw",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint index.mjs"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "memory",
+    "hypergraph",
+    "knowledge-graph",
+    "ai-agent"
+  ],
+  "author": "RunStack AI <support@hypermemory.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RunStack-AI/hypergraph_memory.git",
+    "directory": "skills/openclaw-hypermemory"
+  },
+  "homepage": "https://hypermemory.io",
+  "bugs": {
+    "url": "https://github.com/RunStack-AI/hypergraph_memory/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nock": "^13.5.0"
+  }
+}

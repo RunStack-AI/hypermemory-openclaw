@@ -1,0 +1,196 @@
+{
+  "name": "hypermemory",
+  "version": "1.0.0",
+  "description": "Persistent hypergraph memory for OpenClaw. Store and recall interconnected knowledge across conversations.",
+  "author": "RunStack AI",
+  "homepage": "https://github.com/RunStack-AI/hypergraph_memory",
+  "license": "MIT",
+  "tools": [
+    {
+      "name": "hypermemory_overview",
+      "description": "Get a high-level summary of the memory graph including statistics and top connected nodes. Call this at the start of every conversation.",
+      "schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "hypermemory_store",
+      "description": "Store a new memory node with optional relationships to other nodes. Use for facts, preferences, decisions, project details.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Unique identifier for the memory (e.g., user_name, preference_language, project_webapp_stack)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of what this memory represents"
+          },
+          "data": {
+            "type": "object",
+            "description": "Optional structured metadata (key-value pairs)"
+          },
+          "relationships": {
+            "type": "array",
+            "description": "Optional relationships to other nodes",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nodes": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Array of node keys involved in this relationship (2 or more)"
+                },
+                "relationship": {
+                  "type": "string",
+                  "description": "Type of relationship (e.g., relates_to, part_of, depends_on, owned_by)"
+                },
+                "data": {
+                  "type": "object",
+                  "description": "Optional metadata for the relationship"
+                }
+              },
+              "required": ["nodes", "relationship"]
+            }
+          }
+        },
+        "required": ["key", "description"]
+      }
+    },
+    {
+      "name": "hypermemory_recall",
+      "description": "Search memory for information related to a query. Returns matching nodes and their relationships.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query (semantic/keyword matching)"
+          },
+          "max_results": {
+            "type": "integer",
+            "description": "Maximum number of nodes to return (default: 10)",
+            "default": 10
+          },
+          "max_depth": {
+            "type": "integer",
+            "description": "How many relationship hops to traverse (default: 2)",
+            "default": 2
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "hypermemory_update",
+      "description": "Update an existing memory node. Use when information changes rather than creating duplicates.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of the node to update"
+          },
+          "description": {
+            "type": "string",
+            "description": "New description (optional)"
+          },
+          "data": {
+            "type": "object",
+            "description": "Updated data object (merged with existing)"
+          }
+        },
+        "required": ["key"]
+      }
+    },
+    {
+      "name": "hypermemory_forget",
+      "description": "Remove a memory from the graph. Use for outdated or incorrect information.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of the node to delete"
+          },
+          "cascade": {
+            "type": "boolean",
+            "description": "If true, also removes edges connected to this node (default: true)",
+            "default": true
+          }
+        },
+        "required": ["key"]
+      }
+    },
+    {
+      "name": "hypermemory_find_related",
+      "description": "Find nodes related to a specific memory through relationship traversal.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of the node to find relations for"
+          },
+          "max_depth": {
+            "type": "integer",
+            "description": "How many hops to traverse (default: 2)",
+            "default": 2
+          },
+          "max_nodes": {
+            "type": "integer",
+            "description": "Maximum related nodes to return (default: 20)",
+            "default": 20
+          }
+        },
+        "required": ["key"]
+      }
+    },
+    {
+      "name": "hypermemory_add_relationships",
+      "description": "Add relationships between existing nodes without modifying the nodes themselves.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "relationships": {
+            "type": "array",
+            "description": "Array of relationships to create",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nodes": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Node keys involved (2 or more for hyperedges)"
+                },
+                "relationship": {
+                  "type": "string",
+                  "description": "Relationship type"
+                },
+                "data": {
+                  "type": "object",
+                  "description": "Optional relationship metadata"
+                }
+              },
+              "required": ["nodes", "relationship"]
+            }
+          }
+        },
+        "required": ["relationships"]
+      }
+    }
+  ],
+  "secrets": {
+    "HYPERMEMORY_URL": {
+      "description": "HyperMemory gateway URL",
+      "required": true
+    },
+    "HYPERMEMORY_API_KEY": {
+      "description": "Your HyperMemory API key",
+      "required": true
+    }
+  }
+}

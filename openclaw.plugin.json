@@ -1,0 +1,56 @@
+{
+  "name": "hypermemory",
+  "displayName": "HyperMemory",
+  "version": "1.0.0",
+  "description": "Persistent hypergraph memory for storing and recalling interconnected knowledge across conversations",
+  "author": "RunStack AI",
+  "homepage": "https://hypermemory.io",
+  "icon": "🧠",
+  "kind": "plugin",
+  "entry": "./index.mjs",
+  "tools": [
+    "hypermemory_overview",
+    "hypermemory_store",
+    "hypermemory_recall",
+    "hypermemory_update",
+    "hypermemory_forget",
+    "hypermemory_find_related",
+    "hypermemory_add_relationships"
+  ],
+  "config": {
+    "autoInjectInstructions": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically inject memory context at conversation start"
+    }
+  },
+  "secrets": [
+    {
+      "key": "HYPERMEMORY_URL",
+      "description": "HyperMemory gateway URL",
+      "required": true,
+      "default": "https://api.hypermemory.io"
+    },
+    {
+      "key": "HYPERMEMORY_API_KEY",
+      "description": "Your HyperMemory API key",
+      "required": true
+    }
+  ],
+  "tags": [
+    "memory",
+    "knowledge-graph",
+    "persistence",
+    "context",
+    "hypergraph"
+  ],
+  "categories": [
+    "memory",
+    "productivity",
+    "knowledge-management"
+  ],
+  "compatibility": {
+    "openclaw": ">=0.30.0",
+    "node": ">=18.0.0"
+  }
+}
