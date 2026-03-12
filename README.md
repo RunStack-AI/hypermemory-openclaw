@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="openclaw_hypermemory.svg" alt="HyperMemory for OpenClaw" width="600">
+</p>
+
 # HyperMemory for OpenClaw
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
