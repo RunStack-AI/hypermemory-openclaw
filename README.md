@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="openclaw_hypermemory.svg" alt="HyperMemory for OpenClaw" width="600">
+  <img src="openclaw_hypermemory.svg" alt="HyperMemory for OpenClaw" width="250">
 </p>
 
 # HyperMemory for OpenClaw
