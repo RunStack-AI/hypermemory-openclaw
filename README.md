@@ -258,7 +258,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Related Projects
 
-- [HyperMemory Core](https://github.com/RunStack-AI/hypergraph_memory) - The main HyperMemory repository
+- [HyperMemory MCP](https://github.com/RunStack-AI/hypermemory-mcp) - MCP integration for Claude, OpenAI, n8n, CrewAI, and more
 - [OpenClaw](https://openclaw.ai) - The AI assistant platform
 - [ClawHub](https://clawhub.com) - OpenClaw skill marketplace
 
